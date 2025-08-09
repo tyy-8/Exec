@@ -66,7 +66,7 @@ namespace TysMenu.Classes
 
         public static Photon.Realtime.Player GetPlayerFromVRRig(VRRig p)
         {
-            return GetPhotonViewFromVRRig(p).Owner;
+            return p.Creator.GetPlayerRef();
         }
 
         public static Photon.Realtime.Player GetPlayerFromID(string id)

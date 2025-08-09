@@ -1,19 +1,20 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
-	  <TargetFramework>netstandard2.1</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
+
+    <LangVersion>8.0</LangVersion>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
   </PropertyGroup>
 
+
+
   <ItemGroup>
-    <PackageReference Include="BepInEx.AssemblyPublicizer.MSBuild" Version="0.4.3">
+    <PackageReference Include="BepInEx.AssemblyPublicizer.MSBuild" Version="0.5.0-beta.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
 
-  <PropertyGroup>
-    <PublicizerClearCacheOnClean>true</PublicizerClearCacheOnClean>
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Assembly-CSharp" Publicize="true">
       <HintPath>$(GameAssemblyPath)\Assembly-CSharp.dll</HintPath>
@@ -36,6 +37,24 @@
     <Reference Include="Cinemachine">
       <HintPath>$(GameAssemblyPath)\Cinemachine.dll</HintPath>
     </Reference>
+    <Reference Include="Fusion.Common" Publicize="true">
+      <HintPath>..\..\SteamLibrary\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\Fusion.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Fusion.Log" Publicize="true">
+      <HintPath>..\..\SteamLibrary\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\Fusion.Log.dll</HintPath>
+    </Reference>
+    <Reference Include="Fusion.Realtime" Publicize="true">
+      <HintPath>..\..\SteamLibrary\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\Fusion.Realtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Fusion.Runtime" Publicize="true">
+      <HintPath>..\..\SteamLibrary\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\Fusion.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Fusion.Sockets" Publicize="true">
+      <HintPath>..\..\SteamLibrary\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\Fusion.Sockets.dll</HintPath>
+    </Reference>
+    <Reference Include="Fusion.Unity" Publicize="true">
+      <HintPath>..\..\SteamLibrary\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\Fusion.Unity.dll</HintPath>
+    </Reference>
     <Reference Include="Mono.Security">
       <HintPath>$(GameAssemblyPath)\Mono.Security.dll</HintPath>
     </Reference>
@@ -45,28 +64,28 @@
     <Reference Include="Oculus.VR">
       <HintPath>$(GameAssemblyPath)\Oculus.VR.dll</HintPath>
     </Reference>
-    <Reference Include="Photon3Unity3D">
-      <HintPath>$(GameAssemblyPath)\Photon3Unity3D.dll</HintPath>
+    <Reference Include="Photon3Unity3D" Publicize="true">
+      <HintPath>$(GameAssemblyPath)\Photon3Unity3D.dll</HintPath> 
     </Reference>
-    <Reference Include="PhotonRealtime">
+    <Reference Include="PhotonRealtime" Publicize="true">
       <HintPath>$(GameAssemblyPath)\PhotonRealtime.dll</HintPath>
     </Reference>
-    <Reference Include="PhotonUnityNetworking">
-      <HintPath>$(GameAssemblyPath)\PhotonUnityNetworking.dll</HintPath>
+    <Reference Include="PhotonUnityNetworking" Publicize="true">
+      <HintPath>$(GameAssemblyPath)\PhotonUnityNetworking.dll</HintPath> 
     </Reference>
-    <Reference Include="PhotonUnityNetworking.Utilities">
+    <Reference Include="PhotonUnityNetworking.Utilities" Publicize="true">
       <HintPath>$(GameAssemblyPath)\PhotonUnityNetworking.Utilities.dll</HintPath>
     </Reference>
-    <Reference Include="PhotonVoice">
+    <Reference Include="PhotonVoice" Publicize="true">
       <HintPath>$(GameAssemblyPath)\PhotonVoice.dll</HintPath>
     </Reference>
-    <Reference Include="PhotonVoice.API">
+    <Reference Include="PhotonVoice.API" Publicize="true">
       <HintPath>$(GameAssemblyPath)\PhotonVoice.API.dll</HintPath>
     </Reference>
-    <Reference Include="PhotonVoice.PUN">
+    <Reference Include="PhotonVoice.PUN" Publicize="true">
       <HintPath>$(GameAssemblyPath)\PhotonVoice.PUN.dll</HintPath>
     </Reference>
-    <Reference Include="PlayFab">
+    <Reference Include="PlayFab" Publicize="true">
       <HintPath>$(GameAssemblyPath)\PlayFab.dll</HintPath>
     </Reference>
     <Reference Include="System.EnterpriseServices">
