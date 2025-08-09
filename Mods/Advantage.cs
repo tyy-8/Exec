@@ -15,8 +15,7 @@ namespace TysMenu.Mods
 {
     public class Advantage
     {
-        public static void
-            SendSerialize(PhotonView pv, RaiseEventOptions options = null, int timeOffset = 0) // creds to iidk
+        public static void SendSerialize(PhotonView pv, RaiseEventOptions options = null, int timeOffset = 0) // creds to iidk
         {
             if (!PhotonNetwork.InRoom)
                 return;
@@ -68,19 +67,7 @@ namespace TysMenu.Mods
                 reliable ? SendOptions.SendReliable : SendOptions.SendUnreliable);
 
         }
-
-
-
-
-        private static float fuckyDelay;
-        public static void ReportTag(VRRig rig)
-        {
-            if (Time.time > fuckyDelay)
-            {
-                fuckyDelay = Time.time + 0.1f;
-                GameMode.ReportTag(RigManager.GetPlayerFromVRRig(rig));
-            }
-        }
+        
         public static void TagPlayer(VRRig plr)
         {
             if (!RigManager.PlayerIsTagged(VRRig.LocalRig) || RigManager.PlayerIsTagged(plr))
