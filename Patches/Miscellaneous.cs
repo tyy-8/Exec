@@ -1,6 +1,7 @@
 ﻿using HarmonyLib;
 using Photon.Pun;
 using System;
+using System.Reflection;
 using TysMenu.Notifications;
 using UnityEngine;
 
@@ -86,6 +87,21 @@ namespace TysMenu.Patches
     public class NoIncrementRPC : MonoBehaviour
     {
         private static bool Prefix(PhotonMessageInfoWrapped info, string sourceCall)
+        {
+            return false;
+        }
+    }
+    
+    // idk if d or not
+    [HarmonyPatch]
+    public class NoSpamKick : MonoBehaviour
+    {
+        static MethodBase TargetMethod()
+        {
+            var type = AccessTools.TypeByName("RPCUtil"); 
+            return AccessTools.Method(type, "NotSpam");
+        }
+        private static bool Prefix(string id, PhotonMessageInfoWrapped info, float delay)
         {
             return false;
         }
