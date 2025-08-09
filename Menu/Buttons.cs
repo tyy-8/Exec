@@ -11,6 +11,7 @@ namespace TysMenu.Menu
             new ButtonInfo[] { // Main Mods [0]
                 new ButtonInfo { buttonText = "Settings", method =() => SettingsMods.EnterSettings(), isTogglable = false, toolTip = "Opens the main settings page for the menu."},
                 new ButtonInfo { buttonText = "Movement", isTogglable = false, method =() => Global.SwitchPage(5)},
+                new ButtonInfo { buttonText = "Advantage", isTogglable = false, method =() => Global.SwitchPage(6)},
             },
 
             new ButtonInfo[] { // Settings [1]
@@ -45,6 +46,12 @@ namespace TysMenu.Menu
                 new ButtonInfo { buttonText = "Head Fly", method =() => Movement.Fly(1,false), toolTip = "Allows you to fly with Right Grip."},
                 new ButtonInfo { buttonText = "Physics Head Fly", method =() => Movement.Fly(1,true), toolTip = "Allows you to fly with Right Grip."},
                 new ButtonInfo { buttonText = "Pull", method = Movement.Pull, toolTip = "Makes you go further when hitting the ground."},
+            },
+            
+            new ButtonInfo[] { // Advantage [6]
+                new ButtonInfo { buttonText = "Return", method =() => Global.ReturnHome(), isTogglable = false, toolTip = "Opens the main page for the menu."},
+                new ButtonInfo { buttonText = "Tag Gun", method = Advantage.TagGun, toolTip = "Tags whoever you choose."},
+                new ButtonInfo { buttonText = "Tag All", method = Advantage.TagAll, toolTip = "Tags everyone when holding right trigger."},
             },
         };
     }
