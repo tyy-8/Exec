@@ -83,12 +83,17 @@ namespace TysMenu.Mods
         }
         public static void TagPlayer(VRRig plr)
         {
+            if (!RigManager.PlayerIsTagged(VRRig.LocalRig) || RigManager.PlayerIsTagged(plr))
+                return;
+
             Vector3 archiveRigPosition = VRRig.LocalRig.transform.position;
-            GorillaTagger.Instance.offlineVRRig.transform.position = plr.transform.position;
+            VRRig.LocalRig.transform.position = plr.transform.position;
+
             SendSerialize(GorillaTagger.Instance.myVRRig.GetView, new RaiseEventOptions { TargetActors = new int[] { PhotonNetwork.MasterClient.ActorNumber } });
-            ReportTag(plr);
-            
+            GameMode.ReportTag(plr.Creator);
+
             VRRig.LocalRig.transform.position = archiveRigPosition;
+
             Safety.RpcProc();
         }
         

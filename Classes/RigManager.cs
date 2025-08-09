@@ -1,4 +1,5 @@
-﻿using Photon.Realtime;
+﻿using System.Collections.Generic;
+using Photon.Realtime;
 using Photon.Pun;
 using BepInEx;
 using HarmonyLib;
@@ -63,7 +64,11 @@ namespace TysMenu.Classes
                 return PhotonNetwork.PlayerListOthers[UnityEngine.Random.Range(0, PhotonNetwork.PlayerListOthers.Length - 1)];
             }
         }
-
+        public static bool PlayerIsTagged(VRRig Player)
+        {
+            GorillaTagManager tagThing = (GorillaTagManager)GorillaGameManager.instance;
+            return tagThing.IsInfected(Player.Creator);
+        }
         public static Photon.Realtime.Player GetPlayerFromVRRig(VRRig p)
         {
             return p.Creator.GetPlayerRef();
