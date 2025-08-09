@@ -8,7 +8,7 @@ using static TysMenu.Settings;
 namespace TysMenu.Notifications
 {
     [BepInPlugin("org.gorillatag.lars.notifications2", "NotificationLibrary", "1.0.5")]
-    public class NotifiLib : BaseUnityPlugin
+    public class NotifiLib : BaseUnityPlugin // i'll recode this at some point
     {
         private void Awake()
         {
