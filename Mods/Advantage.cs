@@ -8,7 +8,7 @@ namespace TysMenu.Mods
     public class Advantage
     {
         public static float cooldownThing;
-        public static void TagPlayer(VRRig plr)
+        public static void TagPlayer(VRRig plr) // please!!
         {
             if (Time.time > cooldownThing)
             {
