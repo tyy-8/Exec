@@ -15,7 +15,7 @@ namespace TysMenu.Patches
         {
             if (newPlayer != oldnewplayer)
             {
-                NotifiLib.SendNotification("<color=grey>[</color><color=green>JOIN</color><color=grey>] </color><color=white>Name: " + newPlayer.NickName + "</color>");
+                NotifiLib.SendNotification("<color=grey>[</color><color=green>JOIN</color><color=grey>] </color><color=white>Name: " + NetPlayer.Get(newPlayer).SanitizedNickName + "</color>");
                 oldnewplayer = newPlayer;
             }
         }

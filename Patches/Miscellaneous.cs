@@ -12,8 +12,7 @@ namespace TysMenu.Patches
     {
         private static bool Prefix(string susReason, string susId, string susNick)
         {
-            if (susId == PhotonNetwork.LocalPlayer.UserId)
-                NotifiLib.SendNotification("[<color=yellow>ANTI-CHEAT</color>] Reported you for: " + susReason);
+            NotifiLib.SendNotification($"[<color=yellow>ANTI-CHEAT</color>] Reported {susNick} for: " + susReason);
             return false;
         }
     }
