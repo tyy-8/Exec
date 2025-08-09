@@ -7,17 +7,11 @@ namespace TysMenu.Mods
 {
     public class Advantage
     {
-        public static float cooldownThing;
-        public static void TagPlayer(VRRig plr) // please!!
+        public static void TagPlayer(VRRig plr)
         {
-            if (Time.time > cooldownThing)
-            {
-                GorillaTagger.Instance.maxTagDistance = float.MaxValue;
-                var yes = (GorillaTagManager)GorillaGameManager.instance;
-                yes.ReportTag(plr.Creator, PhotonNetwork.LocalPlayer);
-                GorillaTagger.Instance.maxTagDistance = 1.2f;
-                cooldownThing = Time.time + 0.2f;
-            }
+            GorillaTagger.Instance.maxTagDistance = float.MaxValue;
+            GorillaLocomotion.GTPlayer.Instance.leftControllerTransform.position = plr.transform.position;
+            GorillaTagger.Instance.maxTagDistance = 1.2f;
         }
         
         
