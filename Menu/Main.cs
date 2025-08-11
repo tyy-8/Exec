@@ -1,7 +1,9 @@
 ﻿using BepInEx;
 using HarmonyLib;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using GorillaExtensions;
 using TysMenu.Classes;
 using TysMenu.Notifications;
 using UnityEngine;
@@ -18,11 +20,22 @@ namespace TysMenu.Menu
     {
         // -- vars --
         public static bool rounding = true;
-        
-        
+        public static bool wideMenu;
         // -- end --
         
         
+        private static Dictionary<string, GameObject> objectPool = new Dictionary<string, GameObject> { }; // creds to iidk (again, im following menu license)
+        public static GameObject GetObject(string find)
+        {
+            if (objectPool.TryGetValue(find, out GameObject go))
+                return go;
+
+            GameObject tgo = GameObject.Find(find);
+            if (tgo != null)
+                objectPool.Add(find, tgo);
+
+            return tgo;
+        }
         // Constant
         public static void Prefix()
         {
@@ -58,10 +71,13 @@ namespace TysMenu.Menu
                             if (rightHanded)
                             {
                                 comp.velocity = GorillaLocomotion.GTPlayer.Instance.rightHandCenterVelocityTracker.GetAverageVelocity(true, 0);
+                                comp.angularVelocity = GetObject("Player Objects/Player VR Controller/GorillaPlayer/TurnParent/RightHand Controller").GetOrAddComponent<GorillaVelocityEstimator>().angularVelocity;
                             }
                             else
                             {
                                 comp.velocity = GorillaLocomotion.GTPlayer.Instance.leftHandCenterVelocityTracker.GetAverageVelocity(true, 0);
+                                comp.angularVelocity = GetObject("Player Objects/Player VR Controller/GorillaPlayer/TurnParent/LeftHand Controller").GetOrAddComponent<GorillaVelocityEstimator>().angularVelocity;
+
                             }
 
                             UnityEngine.Object.Destroy(menu, 2);
@@ -129,10 +145,11 @@ namespace TysMenu.Menu
                 UnityEngine.Object.Destroy(menuBackground.GetComponent<BoxCollider>());
                 menuBackground.transform.parent = menu.transform;
                 menuBackground.transform.rotation = Quaternion.identity;
-                menuBackground.transform.localScale = menuSize;
+                menuBackground.transform.localScale = wideMenu ? wideMenuSize : menuSize;
                 menuBackground.GetComponent<Renderer>().material.color = backgroundColor.colors[0].color;
                 menuBackground.transform.position = new Vector3(0.05f, 0f, 0f);
-                MenuUtilities.RoundEdges(menuBackground);
+                if (rounding)
+                    MenuUtilities.RoundEdges(menuBackground);
 
                 ColorChanger colorChanger = menuBackground.AddComponent<ColorChanger>();
                 colorChanger.colorInfo = backgroundColor;
@@ -145,7 +162,7 @@ namespace TysMenu.Menu
                 CanvasScaler canvasScaler = canvasObject.AddComponent<CanvasScaler>();
                 canvasObject.AddComponent<GraphicRaycaster>();
                 canvas.renderMode = RenderMode.WorldSpace;
-                canvasScaler.dynamicPixelsPerUnit = 1000f;
+                canvasScaler.dynamicPixelsPerUnit = 2600f;
 
             // Title and FPS
                 Text text = new GameObject
@@ -209,11 +226,12 @@ namespace TysMenu.Menu
                         disconnectbutton.GetComponent<BoxCollider>().isTrigger = true;
                         disconnectbutton.transform.parent = menu.transform;
                         disconnectbutton.transform.rotation = Quaternion.identity;
-                        disconnectbutton.transform.localScale = new Vector3(0.09f, 0.9f, 0.08f);
+                        disconnectbutton.transform.localScale = wideMenu ? new Vector3(0.09f, 1.4f, 0.08f) : new Vector3(0.09f, 0.9f, 0.08f);
                         disconnectbutton.transform.localPosition = new Vector3(0.56f, 0f, 0.6f);
                         disconnectbutton.GetComponent<Renderer>().material.color = buttonColors[0].colors[0].color;
                         disconnectbutton.AddComponent<Classes.Button>().relatedText = "Disconnect";
-                        MenuUtilities.RoundEdges(disconnectbutton);
+                        if (rounding)
+                            MenuUtilities.RoundEdges(disconnectbutton);
 
                         colorChanger = disconnectbutton.AddComponent<ColorChanger>();
                         colorChanger.colorInfo = buttonColors[0];
@@ -252,10 +270,11 @@ namespace TysMenu.Menu
                     gameObject.transform.parent = menu.transform;
                     gameObject.transform.rotation = Quaternion.identity;
                     gameObject.transform.localScale = new Vector3(0.09f, 0.2f, 0.9f);
-                    gameObject.transform.localPosition = new Vector3(0.56f, 0.65f, 0);
+                    gameObject.transform.localPosition = wideMenu ? new Vector3(0.56f, 0.9f, 0) : new Vector3(0.56f, 0.65f, 0);
                     gameObject.GetComponent<Renderer>().material.color = buttonColors[0].colors[0].color;
                     gameObject.AddComponent<Classes.Button>().relatedText = "PreviousPage";
-                    MenuUtilities.RoundEdges(gameObject);
+                    if (rounding)
+                        MenuUtilities.RoundEdges(gameObject);
 
                     colorChanger = gameObject.AddComponent<ColorChanger>();
                     colorChanger.colorInfo = buttonColors[0];
@@ -278,7 +297,7 @@ namespace TysMenu.Menu
                     component = text.GetComponent<RectTransform>();
                     component.localPosition = Vector3.zero;
                     component.sizeDelta = new Vector2(0.2f, 0.03f);
-                    component.localPosition = new Vector3(0.064f, 0.195f, 0f);
+                    component.localPosition = wideMenu ? new Vector3(0.064f, 0.275f, 0f) : new Vector3(0.064f, 0.195f, 0f);
                     component.rotation = Quaternion.Euler(new Vector3(180f, 90f, 90f));
 
                     gameObject = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -291,10 +310,11 @@ namespace TysMenu.Menu
                     gameObject.transform.parent = menu.transform;
                     gameObject.transform.rotation = Quaternion.identity;
                     gameObject.transform.localScale = new Vector3(0.09f, 0.2f, 0.9f);
-                    gameObject.transform.localPosition = new Vector3(0.56f, -0.65f, 0);
+                    gameObject.transform.localPosition = wideMenu ? new Vector3(0.56f, -0.9f, 0) : new Vector3(0.56f, -0.65f, 0);
                     gameObject.GetComponent<Renderer>().material.color = buttonColors[0].colors[0].color;
                     gameObject.AddComponent<Classes.Button>().relatedText = "NextPage";
-                    MenuUtilities.RoundEdges(gameObject);
+                    if (rounding)
+                        MenuUtilities.RoundEdges(gameObject);
 
                     colorChanger = gameObject.AddComponent<ColorChanger>();
                     colorChanger.colorInfo = buttonColors[0];
@@ -317,7 +337,7 @@ namespace TysMenu.Menu
                     component = text.GetComponent<RectTransform>();
                     component.localPosition = Vector3.zero;
                     component.sizeDelta = new Vector2(0.2f, 0.03f);
-                    component.localPosition = new Vector3(0.064f, -0.195f, 0f);
+                    component.localPosition = wideMenu ? new Vector3(0.064f, -0.275f, 0f) : new Vector3(0.064f, -0.195f, 0f);
                     component.rotation = Quaternion.Euler(new Vector3(180f, 90f, 90f));
 
                 // Mod Buttons
@@ -339,10 +359,11 @@ namespace TysMenu.Menu
             gameObject.GetComponent<BoxCollider>().isTrigger = true;
             gameObject.transform.parent = menu.transform;
             gameObject.transform.rotation = Quaternion.identity;
-            gameObject.transform.localScale = new Vector3(0.09f, 0.9f, 0.08f);
+            gameObject.transform.localScale = wideMenu ? new Vector3(0.09f, 1.4f, 0.08f) : new Vector3(0.09f, 0.9f, 0.08f);
             gameObject.transform.localPosition = new Vector3(0.56f, 0f, 0.28f - offset);
             gameObject.AddComponent<Classes.Button>().relatedText = method.buttonText;
-            MenuUtilities.RoundEdges(gameObject);
+            if (rounding)
+                MenuUtilities.RoundEdges(gameObject);
 
             ColorChanger colorChanger = gameObject.AddComponent<ColorChanger>();
             if (method.enabled)

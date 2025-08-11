@@ -6,7 +6,7 @@ namespace TysMenu
 {
     internal class Settings
     {
-        public static ExtGradient backgroundColor = new ExtGradient {colors = GetSolidGradient(new Color32(120, 30, 40, 255)) };
+        public static ExtGradient backgroundColor = new ExtGradient {colors = GetSolidGradient(new Color32(120, 50, 50, 255)) };
 
         public static ExtGradient[] buttonColors = new ExtGradient[]
         {
@@ -36,6 +36,7 @@ namespace TysMenu
         public static KeyCode keyboardButton = KeyCode.Q;
 
         public static Vector3 menuSize = new Vector3(0.1f, 1f, 1f); // Depth, Width, Height
+        public static Vector3 wideMenuSize = new Vector3(0.1f, 1.5f, 1f); // Depth, Width, Height
         public static int buttonsPerPage = 8;
     }
 }

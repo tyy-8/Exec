@@ -6,6 +6,11 @@ namespace TysMenu.Menu
 {
     public class MenuUtilities
     {
+        public static void ChangeSetting(ref bool setting, bool value) // makes it easier
+        {
+            setting = value;
+            RecreateMenu();
+        }
 
         public static void RoundEdges(GameObject toRound, float Bevel = 0.02f) // Thanks to iidk for this! (It's following his licence set on his menu repository.).
         {

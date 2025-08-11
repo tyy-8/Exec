@@ -15,15 +15,10 @@ namespace TysMenu.Mods
 {
     public class Advantage
     {
-        public static void SendSerialize(PhotonView pv, RaiseEventOptions options = null, int timeOffset = 0) // creds to iidk
+        public static void SendSerialize(PhotonView pv, RaiseEventOptions options = null, int timeOffset = 0) // creds to iidk | this is modified though
         {
-            if (!PhotonNetwork.InRoom)
+            if (!PhotonNetwork.InRoom || pv == null)
                 return;
-
-            if (pv == null)
-            {
-                return;
-            }
 
             List<object> serializedData = PhotonNetwork.OnSerializeWrite(pv);
 
@@ -34,7 +29,7 @@ namespace TysMenu.Mods
                 pv.Synchronization == ViewSynchronization.ReliableDeltaCompressed || mixedReliable;
             raiseEventBatch.Group = pv.Group;
 
-            System.Collections.IDictionary dictionary = PhotonNetwork.serializeViewBatches;
+            IDictionary dictionary = PhotonNetwork.serializeViewBatches;
 
             PhotonNetwork.SerializeViewBatch serializeViewBatch =
                 new PhotonNetwork.SerializeViewBatch(raiseEventBatch, 2);

@@ -13,18 +13,18 @@ namespace TysMenu.Mods
                 {
                     case 0:
                         if (physics)
-                            GorillaLocomotion.GTPlayer.Instance.AddForce(GorillaLocomotion.GTPlayer.Instance.rightControllerTransform.forward * 2 + new Vector3(0,9.81f,0), ForceMode.Acceleration);
+                            GorillaLocomotion.GTPlayer.Instance.AddForce(GorillaLocomotion.GTPlayer.Instance.rightControllerTransform.forward * 10 + new Vector3(0,9.81f,0), ForceMode.Acceleration);
                         if (!physics)
                             GorillaLocomotion.GTPlayer.Instance.transform.position +=
-                                GorillaLocomotion.GTPlayer.Instance.rightControllerTransform.forward * 5;
+                                GorillaLocomotion.GTPlayer.Instance.rightControllerTransform.forward * 1.1f;
                         break;
                     
                     case 1:
                         if (physics)
-                            GorillaLocomotion.GTPlayer.Instance.AddForce(Camera.main.transform.forward * 2 + new Vector3(0,9.81f,0), ForceMode.Acceleration);
+                            GorillaLocomotion.GTPlayer.Instance.AddForce(Camera.main.transform.forward * 10 + new Vector3(0,9.81f,0), ForceMode.Acceleration);
                         if (!physics)
                             GorillaLocomotion.GTPlayer.Instance.transform.position +=
-                                Camera.main.transform.forward * 5;
+                                Camera.main.transform.forward * 1.1f;
 
                         break;
                 }
