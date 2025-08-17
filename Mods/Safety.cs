@@ -1,4 +1,6 @@
 using Photon.Pun;
+using TysMenu.Menu;
+using UnityEngine;
 
 namespace TysMenu.Mods
 {
@@ -14,5 +16,22 @@ namespace TysMenu.Mods
             PhotonNetwork.MaxResendsBeforeDisconnect = int.MaxValue;
             PhotonNetwork.SendAllOutgoingCommands();
         }
+
+        public static void AntiReport()
+        {
+            foreach (var line in MenuUtilities.GetPlayerScoreboardLines(NetworkSystem.Instance.LocalPlayer))
+            {
+                foreach (var rig in GorillaParent.instance.vrrigs)
+                {
+                    if (Vector3.Distance(rig.leftHandTransform.position, line.reportButton.transform.position) <= 0.4f ||
+                        Vector3.Distance(rig.rightHandTransform.position, line.reportButton.transform.position) <= 0.4f)
+                    {
+                        NetworkSystem.Instance.ReturnToSinglePlayer();
+                        return;
+                    }
+                }
+            }
+        }
+
     }
 }

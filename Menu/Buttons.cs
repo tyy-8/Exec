@@ -14,6 +14,8 @@ namespace TysMenu.Menu
                 new ButtonInfo { buttonText = "Movement", isTogglable = false, method =() => Global.SwitchPage(5), toolTip = "Opens the movement page for the menu."},
                 new ButtonInfo { buttonText = "Advantage", isTogglable = false, method =() => Global.SwitchPage(6), toolTip = "Opens the advantage page for the menu."},
                 new ButtonInfo { buttonText = "Overpowered", isTogglable = false, method =() => Global.SwitchPage(7), toolTip = "Opens the overpowered page for the menu."},
+                new ButtonInfo { buttonText = "Safety", isTogglable = false, method =() => Global.SwitchPage(8), toolTip = "Opens the safety page for the menu."},
+                new ButtonInfo { buttonText = "Fun", isTogglable = false, method =() => Global.SwitchPage(9), toolTip = "Opens the fun page for the menu."},
             },
 
             new ButtonInfo[] { // Settings [1]
@@ -60,7 +62,22 @@ namespace TysMenu.Menu
             
             new ButtonInfo[] { // OP [7]
                 new ButtonInfo { buttonText = "Return", method =() => Global.ReturnHome(), isTogglable = false, toolTip = "Opens the main page for the menu."},
-                new ButtonInfo { buttonText = "Set Rank To 999", method =() => RigManager.GetPhotonViewFromVRRig(VRRig.LocalRig).RPC("RPC_UpdateRankedInfo", PhotonNetwork.LocalPlayer,new object[] {999f,999,999, default}), isTogglable = false, toolTip = "Makes everything 999."},
+                new ButtonInfo { buttonText = "Freeze Server", method =() => Overpowered.FreezeServer(), isTogglable = true, toolTip = "Freezes the entire server."},
+            },
+            
+            new ButtonInfo[] { // Safety [8]
+                new ButtonInfo { buttonText = "Return", method =() => Global.ReturnHome(), isTogglable = false, toolTip = "Opens the main page for the menu."},
+                new ButtonInfo { buttonText = "Anti-Report [W?]", method =() => Safety.AntiReport(), isTogglable = true, toolTip = "Attempts to stop people from reporting you."},
+            },
+            
+            new ButtonInfo[] { // Fun [9]
+                new ButtonInfo { buttonText = "Return", method =() => Global.ReturnHome(), isTogglable = false, toolTip = "Opens the main page for the menu."},
+                new ButtonInfo { buttonText = "Physics Doug [NW]", method =() => Fun.PhysicsBug(), disableMethod = Fun.OffPhysicsBug, isTogglable = true, toolTip = "Get ownership of the bug then this will work."},
+                new ButtonInfo { buttonText = "Camera Hand", method =() => Fun.CameraHand(), isTogglable = true, toolTip = "Puts the LIV camera into your hand (SS). Grab camera first."},
+                new ButtonInfo { buttonText = "Camera Aura", method =() => Fun.CameraAura(), isTogglable = true, toolTip = "Puts the LIV camera around you (SS). Grab camera first."},
+                new ButtonInfo { buttonText = "Camera Aura Gun", method =() => Fun.CameraAuraGun(), isTogglable = true, toolTip = "Puts the LIV camera around others (SS). Grab camera first."},
+                new ButtonInfo { buttonText = "Camera Bracelet", method =() => Fun.CameraBracelet(), isTogglable = true, toolTip = "Puts the LIV camera around your hand (SS). Grab camera first."},
+                new ButtonInfo { buttonText = "Hide Camera", method =() => Fun.NoCamera(), isTogglable = true, toolTip = "Hides the LIV camera (SS). Grab camera first."},
             },
         };
     }

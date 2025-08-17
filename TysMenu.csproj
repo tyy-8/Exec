@@ -55,6 +55,9 @@
     <Reference Include="Fusion.Unity" Publicize="true">
       <HintPath>..\..\SteamLibrary\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\Fusion.Unity.dll</HintPath>
     </Reference>
+    <Reference Include="LIV.LCK_GorillaTag">
+      <HintPath>..\..\SteamLibrary\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\LIV.LCK_GorillaTag.dll</HintPath>
+    </Reference>
     <Reference Include="Mono.Security">
       <HintPath>$(GameAssemblyPath)\Mono.Security.dll</HintPath>
     </Reference>

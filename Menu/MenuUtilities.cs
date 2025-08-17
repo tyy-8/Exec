@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using System.Linq;
+using Fusion.Photon.Realtime;
 using TysMenu.Classes;
 using UnityEngine;
 using static TysMenu.Menu.Main;
@@ -11,7 +14,6 @@ namespace TysMenu.Menu
             setting = value;
             RecreateMenu();
         }
-
         public static void RoundEdges(GameObject toRound, float Bevel = 0.02f) // Thanks to iidk for this! (It's following his licence set on his menu repository.).
         {
             Renderer ToRoundRenderer = toRound.GetComponent<Renderer>();
@@ -92,6 +94,39 @@ namespace TysMenu.Menu
             ToRoundRenderer.enabled = false;
         }
 
+        public static List<GorillaPlayerScoreboardLine> archiveAllScoreboardLines;
+        public static List<GorillaPlayerScoreboardLine> GetPlayerScoreboardLines(NetPlayer plr)
+        {
+            if (archiveAllScoreboardLines == null)
+                archiveAllScoreboardLines =  GorillaScoreboardTotalUpdater.allScoreboardLines;
+            
+            return archiveAllScoreboardLines.Where(line => line.linePlayer == plr).ToList();
+        }
+
+
+        public static Vector3 Aura(Vector3 start, float radius, char axis = 'Y') // y = horizontal, z = around (if that's good explaining), x = vertical
+        {
+            float angle = Time.time; 
+
+            Vector3 offset = Vector3.zero;
+
+            switch (axis)
+            {
+                case 'X':
+                    offset = new Vector3(0, Mathf.Cos(angle), Mathf.Sin(angle)) * radius;
+                    break;
+
+                case 'Y':
+                    offset = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle)) * radius;
+                    break;
+
+                case 'Z':
+                    offset = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0) * radius;
+                    break;
+            }
+
+            return start + offset;
+        }
 
     }
 }
