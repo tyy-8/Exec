@@ -1,4 +1,4 @@
-# Ty's Menu
+# Exec
 My BEST attempt at making a good menu.
 # Questions
   **Q.** Can I use this menu's code?<br>
