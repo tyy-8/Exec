@@ -4,6 +4,7 @@
 
     <LangVersion>8.0</LangVersion>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <RootNamespace>TysMenu</RootNamespace>
   </PropertyGroup>
 
 

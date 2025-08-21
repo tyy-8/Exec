@@ -6,17 +6,17 @@ namespace TysMenu
 {
     internal class Settings
     {
-        public static ExtGradient backgroundColor = new ExtGradient {colors = GetSolidGradient(new Color32(120, 50, 50, 255)) };
+        public static ExtGradient backgroundColor = new ExtGradient {colors = GetSolidGradient(new Color32(50, 50, 120, 255)) };
 
         public static ExtGradient[] buttonColors = new ExtGradient[]
         {
             new ExtGradient
             {
-                colors = GetSolidGradient(new Color32(140, 70, 70, 255)) // Disabled
+                colors = GetSolidGradient(new Color32(70, 70, 140, 255)) // Disabled
             },
             new ExtGradient
             {
-                colors = GetSolidGradient(new Color32(240, 110, 110, 255)) // Enabled
+                colors = GetSolidGradient(new Color32(110, 110, 240, 255)) // Enabled
             }
         };
 

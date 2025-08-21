@@ -37,6 +37,7 @@ namespace TysMenu.Menu
 
             new ButtonInfo[] { // Movement Settings [3]
                 new ButtonInfo { buttonText = "Return to Settings", method =() => SettingsMods.EnterSettings(), isTogglable = false, toolTip = "Returns to the main settings page for the menu."},
+                new ButtonInfo { buttonText = "Fly Physics", toolTip = "Adds physics to flying."},
             },
 
             new ButtonInfo[] { // Projectile Settings [4]
@@ -47,10 +48,8 @@ namespace TysMenu.Menu
                 new ButtonInfo { buttonText = "Return", method =() => Global.ReturnHome(), isTogglable = false, toolTip = "Opens the main page for the menu."},
                 new ButtonInfo { buttonText = "Platforms", method =() => Movement.Platforms(), toolTip = "Spawns blocks that lets you walk in air with."},
                 new ButtonInfo { buttonText = "Sticky Platforms", method =() => Movement.FakeStickyPlatforms(), toolTip = "Fake sticky plats (not bothered to make real ones)."},
-                new ButtonInfo { buttonText = "Hand Fly", method =() => Movement.Fly(0,false), toolTip = "Allows you to fly with Right Grip."},
-                new ButtonInfo { buttonText = "Physics Hand Fly", method =() => Movement.Fly(0,true), toolTip = "Allows you to fly with Right Grip."},
-                new ButtonInfo { buttonText = "Head Fly", method =() => Movement.Fly(1,false), toolTip = "Allows you to fly with Right Grip."},
-                new ButtonInfo { buttonText = "Physics Head Fly", method =() => Movement.Fly(1,true), toolTip = "Allows you to fly with Right Grip."},
+                new ButtonInfo { buttonText = "Hand Fly", method =() => Movement.Fly(0), toolTip = "Allows you to fly with Right Grip."},
+                new ButtonInfo { buttonText = "Head Fly", method =() => Movement.Fly(1), toolTip = "Allows you to fly with Right Grip."},
                 new ButtonInfo { buttonText = "Pull", method = Movement.Pull, toolTip = "Makes you go further when hitting the ground."},
             },
             
@@ -62,7 +61,7 @@ namespace TysMenu.Menu
             
             new ButtonInfo[] { // OP [7]
                 new ButtonInfo { buttonText = "Return", method =() => Global.ReturnHome(), isTogglable = false, toolTip = "Opens the main page for the menu."},
-                new ButtonInfo { buttonText = "Freeze Server", method =() => Overpowered.FreezeServer(), isTogglable = true, toolTip = "Freezes the entire server."},
+                new ButtonInfo { buttonText = "Freeze Server [RT]", method =() => Overpowered.FreezeServer(), isTogglable = true, toolTip = "Freezes the entire server."},
             },
             
             new ButtonInfo[] { // Safety [8]

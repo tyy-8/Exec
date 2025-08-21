@@ -1,14 +1,16 @@
 using GorillaLocomotion;
+using TysMenu.Menu;
 using UnityEngine;
 
 namespace TysMenu.Mods
 {
     public class Movement
     {
-        public static void Fly(int flyMode, bool physics) // 0 is hand fly, 1 is head fly
+        public static void Fly(int flyMode) // 0 is hand fly, 1 is head fly
         {
             if (ControllerInputPoller.instance.rightGrab)
             {
+                bool physics = Main.GetIndex("Physics Fly").enabled;
                 switch (flyMode)
                 {
                     case 0:

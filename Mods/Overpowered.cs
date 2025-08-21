@@ -1,4 +1,5 @@
 using ExitGames.Client.Photon;
+using GorillaTagScripts;
 using Photon.Pun;
 using TysMenu.Classes;
 using TysMenu.Menu;
@@ -14,14 +15,11 @@ namespace TysMenu.Mods
         {
             if (ControllerInputPoller.instance.rightControllerIndexFloat > 0.5 && Time.time > delayayayayayyayayay)
             {
-                yesMute = !yesMute;
+                yesMute = !yesMute;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
                 foreach (GorillaPlayerScoreboardLine line in GorillaScoreboardTotalUpdater.allScoreboardLines)
                     GorillaPlayerScoreboardLine.MutePlayer(line.linePlayer.UserId, line.linePlayer.NickName, yesMute ? 1 : 0);
                 delayayayayayyayayay = Time.time + 0.15f;
             }
         }
-        
-        
-        
     }
 }
